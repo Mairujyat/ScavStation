@@ -137,17 +137,6 @@
 				open()
 		return
 
-	if(istype(AM, /obj/structure/bed/chair/wheelchair))
-		var/obj/structure/bed/chair/wheelchair/wheel = AM
-		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
-				open()
-			else
-				do_animate("deny")
-		return
-	return
-
-
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group) return !block_air_zones
 	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
@@ -155,7 +144,7 @@
 	return !density
 
 
-/obj/machinery/door/proc/bumpopen(mob/user as mob)
+/obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)	return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
@@ -191,7 +180,7 @@
 
 
 
-/obj/machinery/door/hitby(AM as mob|obj, var/datum/thrownthing/TT)
+/obj/machinery/door/hitby(var/atom/movable/AM, var/datum/thrownthing/TT)
 
 	..()
 	visible_message("<span class='danger'>[src.name] was hit by [AM].</span>")
@@ -209,7 +198,7 @@
 	if(CanInteract(user, DefaultTopicState()))
 		return attackby(user, user)
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user, 0, I)
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_type() == src.get_material_type())
@@ -296,7 +285,7 @@
 		return 1
 
 //psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-/obj/machinery/door/proc/check_force(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/proc/check_force(obj/item/I, mob/user)
 	if(src.density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
 		var/obj/item/W = I
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

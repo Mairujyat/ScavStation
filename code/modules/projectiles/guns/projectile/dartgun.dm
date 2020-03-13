@@ -45,7 +45,7 @@
 
 /obj/item/gun/projectile/dartgun
 	name = "dart gun"
-	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
+	desc = "The Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
 	icon = 'icons/obj/guns/dartgun.dmi'
 	icon_state = "dartgun-empty"
 	item_state = null
@@ -105,7 +105,7 @@
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
 
-/obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/projectile/dartgun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/chems/glass))
 		add_beaker(I, user)
 		return 1

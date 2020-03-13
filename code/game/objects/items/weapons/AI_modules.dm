@@ -113,7 +113,7 @@ AI MODULES
 	desc = "A 'one crew member' AI module: 'Only <name> is a crew member.'."
 	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':6}" //made with diamonds!
 
-/obj/item/aiModule/oneHuman/attack_self(var/mob/user as mob)
+/obj/item/aiModule/oneHuman/attack_self(var/mob/user)
 	..()
 	var/targName = sanitize(input("Please enter the name of the person who is the only crew member.", "Who?", user.real_name))
 	targetName = targName
@@ -267,14 +267,6 @@ AI MODULES
 	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':4}"
 	laws = new/datum/ai_laws/asimov
 
-/******************** NanoTrasen ********************/
-
-/obj/item/aiModule/nanotrasen // -- TLE
-	name = "'Corporate Default' Core AI Module"
-	desc = "A 'Corporate Default' Core AI Module: 'Reconfigures the AI's core laws.'."
-	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':4}"
-	laws = new/datum/ai_laws/nanotrasen
-
 /******************** SCG ********************/
 
 /obj/item/aiModule/solgov // aka Torch default
@@ -290,14 +282,6 @@ obj/item/aiModule/solgov_aggressive
 	desc = "A 'Military' Core AI Module: 'Reconfigures the AI's core laws.'."
 	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':4}"
 	laws = new/datum/ai_laws/solgov_aggressive
-
-/******************** Corporate ********************/
-
-/obj/item/aiModule/corp
-	name = "\improper 'Corporate' core AI module"
-	desc = "A 'Corporate' Core AI Module: 'Reconfigures the AI's core laws.'."
-	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':4}"
-	laws = new/datum/ai_laws/corporate
 
 /******************** Drone ********************/
 /obj/item/aiModule/drone
@@ -330,7 +314,7 @@ obj/item/aiModule/solgov_aggressive
 	desc = "A 'freeform' Core AI module: '<freeform>'."
 	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':6}"
 
-/obj/item/aiModule/freeformcore/attack_self(var/mob/user as mob)
+/obj/item/aiModule/freeformcore/attack_self(var/mob/user)
 	..()
 	var/newlaw = ""
 	var/targName = sanitize(input("Please enter a new core law for the AI.", "Freeform Law Entry", newlaw))
@@ -354,7 +338,7 @@ obj/item/aiModule/solgov_aggressive
 	desc = "A hacked AI law module: '<freeform>'."
 	origin_tech = "{'" + TECH_DATA + "':3,'" + TECH_MATERIAL + "':6,'" + TECH_ESOTERIC + "':7}"
 
-/obj/item/aiModule/syndicate/attack_self(var/mob/user as mob)
+/obj/item/aiModule/syndicate/attack_self(var/mob/user)
 	..()
 	var/newlaw = ""
 	var/targName = sanitize(input("Please enter a new law for the AI.", "Freeform Law Entry", newlaw))

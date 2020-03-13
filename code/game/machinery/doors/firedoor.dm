@@ -130,7 +130,7 @@
 		return ..()
 	return 0
 
-/obj/machinery/door/firedoor/attack_hand(mob/user as mob)
+/obj/machinery/door/firedoor/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
@@ -185,7 +185,7 @@
 				nextstate = FIREDOOR_CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/door/firedoor/attackby(obj/item/C, mob/user)
 	add_fingerprint(user, 0, C)
 	if(operating)
 		return//Already doing something.
@@ -277,7 +277,7 @@
 	if (stat & BROKEN)
 		new /obj/item/stock_parts/circuitboard/broken(src.loc)
 	else
-		new/obj/item/airalarm_electronics(src.loc)
+		new /obj/item/stock_parts/circuitboard/air_alarm(src.loc)
 
 	var/obj/structure/firedoor_assembly/FA = new/obj/structure/firedoor_assembly(src.loc)
 	FA.anchored = !moved
