@@ -2398,6 +2398,7 @@
 #include "code\modules\materials\material_sheets_mapping.dm"
 #include "code\modules\materials\material_synth.dm"
 #include "code\modules\materials\materials_ore.dm"
+#include "code\modules\materials\definitions\material_unique_khthonia.dm"
 #include "code\modules\materials\definitions\gasses\_mat_gas.dm"
 #include "code\modules\materials\definitions\gasses\material_gas_alien.dm"
 #include "code\modules\materials\definitions\gasses\material_gas_mundane.dm"
