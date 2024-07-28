@@ -2,10 +2,8 @@
 	name = "Hermetic Secretion"
 	lore_text = "A grey-brown liquid, found in the putrid flesh of a long-dead organism."
 	taste_description = "decaying blood"
-	var/taste_mult = 0.6
 	color = "554f4d"
 	overdose =100
-	var/slipperiness = 50
 	exoplanet_rarity_plant = MAT_RARITY_NOWHERE
 	exoplanet_rarity_gas = MAT_RARITY_NOWHERE
 	uid = "liquid_hermetic_secretion"
@@ -85,7 +83,7 @@
 		return
 
 	if(M.dna)
-		if(prob(removed * 1))
+		if(prob(1))
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -98,23 +96,22 @@
 		M.emote(/decl/emote/visible/shiver)
 		M.custom_emote(2, "[pick("wheezes.","spasms.","rattles.","twists.","gasps.")]")
 	if(ishuman(M) && prob(10))
-		var/mob/living/carbon/human/H = M
 		H.seizure()
 	M.adjustBrainLoss(rand(1, 5))
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("<font size = [rand(2,4)]>[pick(overdose_messages)]</font>"))
 	if(prob(10))
 		M.emote(/decl/emote/visible/drool)
-	M.adjustOxyLoss(3 * removed)
+	M.adjustOxyLoss(3)
 	ADJ_STATUS(M, STAT_JITTER, 50)
 	ADJ_STATUS(M, STAT_DIZZY,  3)
 	ADJ_STATUS(M, STAT_CONFUSE, 2)
 	ADJ_STATUS(M, STAT_SLUR, 10)
-	ADJ_STATUS(M, STAT_STUTTER 10)
+	ADJ_STATUS(M, STAT_STUTTER, 10)
 	M.set_hallucination(50, 50)
 	M.add_chemical_effect(CE_THIRDEYE, 1)
 	M.add_chemical_effect(CE_MIND, -2)
-	M.add_chemical_effect(CE_GLOWINGEYES 1)
+	M.add_chemical_effect(CE_GLOWINGEYES, 1)
 	M.add_chemical_effect(CE_SLOWDOWN, 10)
 	M.add_chemical_effect(CE_PULSE, -4)
 	M.add_chemical_effect(CE_ALCOHOL, 1)
@@ -124,36 +121,28 @@
 	M.add_chemical_effect(CE_VOICELOSS, 1)
 	M.add_chemical_effect(CE_PAINKILLER, 100)
 	M.add_chemical_effect(CE_NOPULSE, 1)
-	M.add_chemical_effect(CCE_BRAIN_REGEN, 1)
+	M.add_chemical_effect(CE_BRAIN_REGEN, 1)
 	M.add_chemical_effect(CE_BLOODRESTORE, 1)
-	M.apply_damage(15 * removed, armor_pen = 100)
-	if(LAZYACCESS(M.chem_doses, type) <= removed) //half-assed attempt to make timeofdeath update only at the onset
-		M.timeofdeath = world.time
+	M.apply_damage(15, armor_pen = 100)
+	M.timeofdeath = world.time
 
 /decl/material/liquid/hekatic_enzyme
 	name = "Hekatic Enzyme"
 	lore_text = "A dark red sludge, found in the putrid flesh of a long-dead organism."
 	taste_description = "absolutely vile"
-	var/taste_mult = 1
 	color = "420000"
 	overdose =0.1
 	solvent_power = MAT_SOLVENT_VERY_STRONG
 	solvent_melt_dose = 7
 	solvent_max_damage = 90
+	var/amount_to_zombify = 0.1
 	exoplanet_rarity_plant = MAT_RARITY_NOWHERE
 	exoplanet_rarity_gas = MAT_RARITY_NOWHERE
 	uid = "liquid_hekatic_enzyme"
 
 /decl/material/liquid/hermetic_secretion/affect_overdose(var/mob/living/M)
-	if(M.isSynthetic())
-		return
-
-	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.get_bodytype()?.body_flags & BODY_FLAG_NO_DNA))
-		return
-
-	if(M.dna)
-		if(prob(removed * 5))
+	if(ishuman(M) && M.dna)
+		if(prob (5))
 			randmuti(M)
 			if(prob(98))
 				randmutb(M)
@@ -165,32 +154,13 @@
 	if(prob(1))
 		M.custom_emote(2, "[pick("wheezes.","spasms.","rattles.","twists.","whimpers.","gasps.")]")
 	if(ishuman(M) && prob(10))
-		H.seizure()
+		M.seizure()
 	M.adjustBrainLoss(rand(1, 5))
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/true_dose = LAZYACCESS(H.chem_doses, type) + REAGENT_VOLUME(holder, type)
-		if (true_dose >= amount_to_zombify)
-			H.zombify()
-		else if (true_dose > 1 && prob(20))
-			H.zombify()
-		else if (prob(10))
-			to_chat(H, "<span class='warning'>You feel like your gut is trying to digest itself!</span>")
-		var/list/limbs = H.get_external_organs()
-		var/list/shuffled_limbs = LAZYLEN(limbs) ? shuffle(limbs.Copy()) : null
-			if(E.organ_tag != BP_CHEST && E.organ_tag != BP_GROIN && prob(15))
-				to_chat(H, SPAN_DANGER("Your [E.name] is being shredded like week-old spinach!"))
-				if(E.can_feel_pain())
-					H.emote(/decl/emote/audible/scream)
-				if(prob(25))
-					E.dismember(0, DISMEMBER_METHOD_BLUNT)
-				else
-					E.take_external_damage(rand(20,30), 0)
-					BP_SET_CRYSTAL(E)
-					E.status |= ORGAN_BRITTLE
-				break
-		var/list/internal_organs = H.get_internal_organs()
-		var/list/shuffled_organs = LAZYLEN(internal_organs) ? shuffle(internal_organs.Copy()) : null
+	if (prob(10))
+		to_chat(M, "<span class='warning'>You feel like your gut is trying to digest itself!</span>")
+		M.emote(/decl/emote/audible/scream)
+	if(prob(25))
+		M.apply_damage(rand(80,120), 0)
 	else
 		to_chat(M, SPAN_DANGER("Jagged brown crystals erupt from your skin, ripping through it!"))
 		M.adjustBruteLoss(rand(3,6))
@@ -198,13 +168,12 @@
 	ADJ_STATUS(M, STAT_DIZZY,  3)
 	ADJ_STATUS(M, STAT_CONFUSE, 2)
 	ADJ_STATUS(M, STAT_SLUR, 10)
-	ADJ_STATUS(M, STAT_STUTTER 10)
+	ADJ_STATUS(M, STAT_STUTTER, 10)
 	M.set_hallucination(50, 50)
 	M.add_chemical_effect(CE_MIND, 2)
 	M.add_chemical_effect(CE_SPEEDBOOST, 10)
 	M.add_chemical_effect(CE_PULSE, 4)
 	M.add_chemical_effect(CE_ALCOHOL_TOXIC, 1)
 	M.add_chemical_effect(CE_BREATHLOSS, 0.6)
-	M.apply_damage(15 * removed, armor_pen = 100)
-	if(LAZYACCESS(M.chem_doses, type) <= removed) //half-assed attempt to make timeofdeath update only at the onset
-		M.timeofdeath = world.time
+	M.apply_damage(15, armor_pen = 100)
+	M.timeofdeath = world.time

@@ -1,11 +1,11 @@
-/datum/map/ministation
-	name = "Ministation"
-	full_name = "Tradepost Mollusc"
-	path = "ministation"
-	ground_noun = "floor"
+/datum/map/gsbkhthonia
+	name = "Khthonia"
+	full_name = "GSB Khthonia"
+	path = "khthonia"
+	ground_noun = "ground"
 
-	station_name = "Tradepost Mollusc"
-	station_short = "Mollusc"
+	station_name = "Galactic Survey Boat Khthonia"
+	station_short = "Khthonia"
 
 	dock_name     = "Val Salia Station"
 	boss_name     = "Trademaster"
@@ -17,9 +17,9 @@
 
 	lobby_screens = list('maps/ministation/ministation_lobby.png')
 
-	overmap_ids = list(OVERMAP_ID_SPACE)
-	num_exoplanets = 3
-	away_site_budget = 3
+	//overmap_ids = list(OVERMAP_ID_SPACE)
+	//num_exoplanets = 3
+	//away_site_budget = 3
 	lobby_tracks = list(/decl/music_track/absconditus,
 /decl/music_track/level3_mod, /decl/music_track/tintin, /decl/music_track/zazie
 
@@ -66,6 +66,7 @@
 		list("name" = "Security",      "key" = "s", "frequency" = 1359, "color" = COMMS_COLOR_SECURITY,  "span_class" = "secradio", "secured" = list(access_security))
 		)
 
-/datum/map/ministation/get_map_info()
-	return "You're aboard the <b>[station_name],</b> an older station once used for unethical economic research. It has long since been repurposed as deep space communication relay, though only on paper. \
-	Onboard activity is at the whims of the [boss_name] who treat the station as a dumping ground for less desired tradehouse personnel."
+/datum/map/gsbkhthonia/get_map_info()
+	return "You're among the surviving crew of the <b>[station_name]</b>. After a severe malfunction with the propulsion system the ship crash-landed in this arid wasteland, her crew left to fend for themselves.\
+	The only solace you and your crew have left is your shared sense of purpose and mighty corporate commitment, injected deep in your hearts by the [boss_name]'s stirring speech during the crew orientation video:\
+	<b>In the event of an emergency, never lose hope! There is <i>always</i> work to be done, and each ship is stocked out the wazoo - there's <i>no way</i> there'll be a drop in productivity!</b>"

@@ -1,15 +1,10 @@
 /*
-Ministation "Zebra"
-A butchered variant on Giacom's Ministation designed for 5 to 10 players.
-Now poorly imported for Nebula!
-And then imported back to ScavStation!
+Galactic Survey Boat "Khthonia"
+A trash planet with a trash ship
 */
-
 #if !defined(USING_MAP_DATUM)
 
-	#define USING_MAP_DATUM /datum/map/ministation
-
-// Uncomment when someone is willing to fix the ~80 map issues.
+//
 //	#ifdef UNIT_TEST
 //		#include "../../code/unit_tests/offset_tests.dm"
 //	#endif
@@ -33,20 +28,19 @@ And then imported back to ScavStation!
 	#include "../../mods/content/scaling_descriptors.dm"
 	#include "../../mods/valsalia/_valsalia.dme"
 
-	#include "ministation_antagonists.dm"
-	#include "ministation_areas.dm"
-	#include "ministation_departments.dm"
-	#include "ministation_jobs.dm"
-	#include "ministation_shuttles.dm"
-	#include "ministation_objects.dm"
-	#include "ministation_unit_testing.dm"
-	#include "ministation_overrides.dm"
+	//#include "gsbkhthonia_antagonists.dm"
+	//#include "gsbkhthonia_areas.dm"
+	#include "gsbkhthonia_departments.dm"
+	#include "gsbkhthonia_jobs.dm"
+	//#include "gsbkhthonia_shuttles.dm"
+	//#include "gsbkhthonia_unit_testing.dm"
+	//#include "gsbkhthonia_overrides.dm"
 
-	#include "ministation-0.dmm"
-	#include "ministation-1.dmm"
-	#include "ministation-2.dmm"
-	#include "ministation-3.dmm"
-	#include "space.dmm"
+	#include "gsbkhthonia-0.dmm"
+	#include "gsbkhthonia-1.dmm"
+	#include "gsbkhthonia-2.dmm"
+	#include "gsbkhthonia-3.dmm"
+	#include "gsbkhthonia-4.dmm"
 
 	#include "../away/bearcat/bearcat.dm"
 	#include "../away/casino/casino.dm"
@@ -65,30 +59,32 @@ And then imported back to ScavStation!
 	#include "../../mods/mobs/dionaea/_dionaea.dme"
 	#include "../../mods/mobs/borers/_borers.dme"
 
-	#include "ministation_overmap.dm"
+	#include "gsbkhthonia_overmap.dm"
 
-	#include "jobs/command.dm"
+	//#include "jobs/command.dm"
 	#include "jobs/civilian.dm"
-	#include "jobs/engineering.dm"
-	#include "jobs/medical.dm"
-	#include "jobs/security.dm"
-	#include "jobs/science.dm"
-	#include "jobs/yinglets.dm"
-	#include "jobs/tradehouse.dm"
-	#include "jobs/synthetics.dm"
+	//#include "jobs/engineering.dm"
+	//#include "jobs/medical.dm"
+	//#include "jobs/security.dm"
+	//#include "jobs/science.dm"
+	//#include "jobs/yinglets.dm"
+	//#include "jobs/tradehouse.dm"
+	//#include "jobs/synthetics.dm"
 
 	#include "outfits/_outfits.dm"
-	#include "outfits/command.dm"
+	//#include "outfits/command.dm"
 	#include "outfits/civilian.dm"
-	#include "outfits/engineering.dm"
-	#include "outfits/medical.dm"
-	#include "outfits/science.dm"
-	#include "outfits/security.dm"
-	#include "outfits/yinglets.dm"
-	#include "outfits/tradehouse.dm"
+	//#include "outfits/engineering.dm"
+	//#include "outfits/medical.dm"
+	//#include "outfits/science.dm"
+	//#include "outfits/security.dm"
+	//#include "outfits/yinglets.dm"
+	//#include "outfits/tradehouse.dm"
+
+	#define USING_MAP_DATUM /datum/map/gsbkhthonia
 
 #elif !defined(MAP_OVERRIDE)
 
-	#warn A map has already been included, ignoring ministation.
+	#warn A map has already been included, ignoring gsbkhthonia.
 
 #endif

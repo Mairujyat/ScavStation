@@ -1,4 +1,4 @@
-/datum/job/ministation/assistant
+/datum/job/gsbkhthonia/assistant
 	title = "Recruit"
 	total_positions = -1
 	spawn_positions = -1
@@ -8,25 +8,25 @@
 	minimal_access = list()
 	hud_icon = "hudassistant"
 	alt_titles = list("Technical Recruit","Medical Recruit","Research Recruit","Visitor")
-	outfit_type = /decl/hierarchy/outfit/job/ministation_assistant
+	outfit_type = /decl/hierarchy/outfit/job/gsbkhthonia_assistant
 	department_types = list(/decl/department/civilian)
 	event_categories = list(ASSIGNMENT_GARDENER)
 
-/datum/job/ministation/assistant/get_access()
+/datum/job/gsbkhthonia/assistant/get_access()
 	if(get_config_value(/decl/config/toggle/assistant_maint))
 		return list(access_maint_tunnels)
 	return list()
 
-/decl/hierarchy/outfit/job/ministation_assistant
-	name = "Job - Ministation Assistant"
+/decl/hierarchy/outfit/job/gsbkhthonia_assistant
+	name = "Job - GSB Khthonia Assistant"
 
-/datum/job/ministation/bartender
+/datum/job/gsbkhthonia/bartender
 	title = "Bartender"
 	alt_titles = list("Cook","Barista")
 	supervisors = "the Head of Personnel and the Captain"
 	total_positions = 2
 	spawn_positions = 1
-	outfit_type = /decl/hierarchy/outfit/job/ministation/bartender
+	outfit_type = /decl/hierarchy/outfit/job/gsbkhthonia/bartender
 	department_types = list(/decl/department/service)
 	selection_color = "#3fbe4a"
 	economic_power = 5
@@ -52,13 +52,13 @@
 	)
 	skill_points = 30
 
-/datum/job/ministation/cargo
+/datum/job/gsbkhthonia/cargo
 	title = "Cargo Technician"
 	alt_titles = list("Shaft Miner","Drill Technician","Prospector")
 	supervisors = "the Head of Personnel and the Captain"
 	total_positions = 3
 	spawn_positions = 1
-	outfit_type = /decl/hierarchy/outfit/job/ministation/cargo
+	outfit_type = /decl/hierarchy/outfit/job/gsbkhthonia/cargo
 	department_types = list(/decl/department/service)
 	selection_color = "#8a7c00"
 	economic_power = 5
@@ -101,7 +101,7 @@
 		/datum/computer_file/program/reports
 	)
 
-/datum/job/ministation/janitor
+/datum/job/gsbkhthonia/janitor
 	title = "Janitor"
 	event_categories = list(ASSIGNMENT_JANITOR)
 	department_types = list(/decl/department/service)
@@ -130,13 +130,13 @@
 		"Custodian",
 		"Sanitation Technician"
 	)
-	outfit_type = /decl/hierarchy/outfit/job/ministation/janitor
+	outfit_type = /decl/hierarchy/outfit/job/gsbkhthonia/janitor
 	min_skill = list(
 		SKILL_HAULING  = SKILL_BASIC
 	)
 	skill_points = 28
 
-/datum/job/ministation/librarian
+/datum/job/gsbkhthonia/librarian
 	title = "Librarian"
 	department_types = list(/decl/department/service)
 	total_positions = 1
@@ -150,7 +150,7 @@
 		"Curator",
 		"Archivist"
 	)
-	outfit_type = /decl/hierarchy/outfit/job/ministation/librarian
+	outfit_type = /decl/hierarchy/outfit/job/gsbkhthonia/librarian
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT
 	)
