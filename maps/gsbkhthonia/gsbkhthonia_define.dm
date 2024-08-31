@@ -1,7 +1,7 @@
 /datum/map/gsbkhthonia
 	name = "Khthonia"
 	full_name = "GSB Khthonia"
-	path = "khthonia"
+	path = "gsbkhthonia"
 	ground_noun = "ground"
 
 	station_name = "Galactic Survey Boat Khthonia"
@@ -17,9 +17,9 @@
 
 	lobby_screens = list('maps/ministation/ministation_lobby.png')
 
-	//overmap_ids = list(OVERMAP_ID_SPACE)
-	//num_exoplanets = 3
-	//away_site_budget = 3
+	overmap_ids = list(OVERMAP_ID_SPACE)
+	num_exoplanets = 3
+	away_site_budget = 3
 	lobby_tracks = list(/decl/music_track/absconditus,
 /decl/music_track/level3_mod, /decl/music_track/tintin, /decl/music_track/zazie
 
@@ -67,6 +67,6 @@
 		)
 
 /datum/map/gsbkhthonia/get_map_info()
-	return "You're among the surviving crew of the <b>[station_name]</b>. After a severe malfunction with the propulsion system the ship crash-landed in this arid wasteland, her crew left to fend for themselves.\
-	The only solace you and your crew have left is your shared sense of purpose and mighty corporate commitment, injected deep in your hearts by the [boss_name]'s stirring speech during the crew orientation video:\
+	return "You're among the surviving crew of the <b>[station_name]</b>. After a severe malfunction with the propulsion system the ship crash-landed in this arid wasteland, her crew left to fend for themselves. \
+	The only solace you and your crew have left is your shared sense of purpose and mighty corporate commitment, injected deep into your hearts by the [boss_name]'s stirring speech during the crew orientation video: \
 	<b>In the event of an emergency, never lose hope! There is <i>always</i> work to be done, and each ship is stocked out the wazoo - there's <i>no way</i> there'll be a drop in productivity!</b>"

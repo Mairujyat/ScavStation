@@ -3,7 +3,24 @@
 	lore_text = "A grey-brown liquid, found in the putrid flesh of a long-dead organism."
 	taste_description = "decaying blood"
 	color = "554f4d"
-	overdose =100
+	molar_mass = 0.020
+	boiling_point = 502 CELSIUS
+	melting_point = -8.95 CELSIUS
+	latent_heat = 2258
+	gas_condensation_point = 435.45 // 162.3C
+	overdose = 100
+	heating_products = list(
+		/decl/material/liquid/denatured_toxin = 0.1,
+		/decl/material/gas/methyl_bromide = 0.35,
+		/decl/material/liquid/presyncopics = 0.1,
+		/decl/material/liquid/blood = 0.1,
+		/decl/material/liquid/neuroannealer = 0.15,
+		/decl/material/liquid/hallucinogenics = 0.05,
+		/decl/material/liquid/psychotropics = 0.05,
+		/decl/material/liquid/psychoactives = 0.05,
+		/decl/material/liquid/amphetamines = 0.05
+	)
+
 	exoplanet_rarity_plant = MAT_RARITY_NOWHERE
 	exoplanet_rarity_gas = MAT_RARITY_NOWHERE
 	uid = "liquid_hermetic_secretion"
@@ -131,7 +148,12 @@
 	lore_text = "A dark red sludge, found in the putrid flesh of a long-dead organism."
 	taste_description = "absolutely vile"
 	color = "420000"
-	overdose =0.1
+	molar_mass = 0.020
+	boiling_point = 502 CELSIUS
+	melting_point = -8.95 CELSIUS
+	latent_heat = 2258
+	gas_condensation_point = 435.45 // 162.3C
+	overdose = 0.1
 	solvent_power = MAT_SOLVENT_VERY_STRONG
 	solvent_melt_dose = 7
 	solvent_max_damage = 90
@@ -139,8 +161,17 @@
 	exoplanet_rarity_plant = MAT_RARITY_NOWHERE
 	exoplanet_rarity_gas = MAT_RARITY_NOWHERE
 	uid = "liquid_hekatic_enzyme"
+	heating_products = list(
+		/decl/material/liquid/acid/stomach = 0.35,
+		/decl/material/liquid/blood = 0.1,
+		/decl/material/liquid/zombie = 0.1,
+		/decl/material/liquid/crystal_agent = 0.1,
+		/decl/material/liquid/antiseptic = 0.1,
+		/decl/material/liquid/hallucinogenics = 0.1,
+		/decl/material/liquid/narcotics = 0.15
+	)
 
-/decl/material/liquid/hermetic_secretion/affect_overdose(var/mob/living/M)
+/decl/material/liquid/hekatic_enzyme/affect_overdose(var/mob/living/M)
 	if(ishuman(M) && M.dna)
 		if(prob (5))
 			randmuti(M)
